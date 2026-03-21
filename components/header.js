@@ -12,8 +12,13 @@ import Link from "next/link";
 import Logo from "./assets/LogoSVG";
 
 const Header = () => {
-  const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Prevent scrolling when menu is open
   useEffect(() => {
@@ -25,6 +30,8 @@ const Header = () => {
 
     return () => {
       document.body.style.overflow = "auto";
+    };
+  }, [isMenuOpen]);
     };
   }, [isMenuOpen]);
 
@@ -59,7 +66,7 @@ const Header = () => {
             className={`flex flex-col items-center justify-center gap-8 h-full md:h-auto md:flex-row md:justify-start`}
           >
             {links.map((link) => {
-              const isActive = pathname === link.path;
+              const isActive = mounted && pathname === link.path;
               return (
                 <li
                   key={`${link.label}-${link.path}`}
