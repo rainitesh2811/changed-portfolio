@@ -1,17 +1,19 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const RectangleSVG = ({ className }) => {
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [strokeColor, setStrokeColor] = useState("#282c33");
 
   useEffect(() => {
     setMounted(true);
+    // Dynamically import and use useTheme only after mount
+    import("next-themes").then(({ useTheme }) => {
+      const { resolvedTheme } = useTheme();
+      setStrokeColor(resolvedTheme === "dark" ? "#abb2bf" : "#282c33");
+    });
   }, []);
-
-  const strokeColor = mounted && resolvedTheme === "dark" ? "#abb2bf" : "#282c33";
 
   return (
     <svg
