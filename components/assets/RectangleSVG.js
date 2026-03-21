@@ -1,9 +1,17 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const RectangleSVG = ({ className }) => {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const strokeColor = mounted && resolvedTheme === "dark" ? "#abb2bf" : "#282c33";
 
   return (
     <svg
@@ -19,7 +27,7 @@ const RectangleSVG = ({ className }) => {
         y="0.5"
         width="85"
         height="85"
-        stroke={` ${resolvedTheme === "dark" ? "#abb2bf" : "#282c33"}`}
+        stroke={strokeColor}
       />
     </svg>
   );

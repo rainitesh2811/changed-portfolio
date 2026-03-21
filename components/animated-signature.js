@@ -2,10 +2,19 @@
 
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 
 const AnimatedSignature = () => {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const color = mounted && resolvedTheme === "dark" ? "#c778dd" : "#6e11b0";
+
   return (
     <motion.svg
       className="h-14"
@@ -16,7 +25,7 @@ const AnimatedSignature = () => {
       {/* Main signature path */}
       <motion.path
         d="M50,150 C80,50 150,50 180,110 C210,170 270,160 320,80 C330,60 340,90 300,140 C270,180 200,175 140,180"
-        stroke={` ${resolvedTheme === "dark" ? "#c778dd" : "#6e11b0"}`}
+        stroke={color}
         strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -33,7 +42,7 @@ const AnimatedSignature = () => {
       {/* Extra flourish under the signature */}
       <motion.path
         d="M80,170 C150,190 220,190 290,170"
-        stroke={` ${resolvedTheme === "dark" ? "#c778dd" : "#6e11b0"}`}
+        stroke={color}
         strokeWidth="4"
         strokeLinecap="round"
         fill="none"
