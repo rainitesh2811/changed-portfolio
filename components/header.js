@@ -1,12 +1,12 @@
 "use client";
 
-import { WrapSection } from "./sections";
-import { useState, useEffect } from "react";
 import { PROFILE_LINKS } from "@/utils/data";
-import { ThemeToggle } from "./theme-toggle";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaEnvelope, FaGithub, FaLinkedinIn } from "react-icons/fa6";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
-import { FaLinkedinIn, FaGithub, FaEnvelope } from "react-icons/fa6";
+import { WrapSection } from "./sections";
+import { ThemeToggle } from "./theme-toggle";
 
 import Link from "next/link";
 import Logo from "./assets/LogoSVG";
@@ -30,8 +30,6 @@ const Header = () => {
 
     return () => {
       document.body.style.overflow = "auto";
-    };
-  }, [isMenuOpen]);
     };
   }, [isMenuOpen]);
 
