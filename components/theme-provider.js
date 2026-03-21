@@ -11,13 +11,19 @@ export function ThemeProvider({ children }) {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return <>{children}</>; // Prevents mismatch between server & client rendering
-  }
+  // Always render children, but only wrap with NextThemesProvider on client
+  try {
+    if (!mounted) {
+      return <>{children}</>; // Prevents mismatch between server & client rendering
+    }
 
-  return (
-    <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
-      {children}
-    </NextThemesProvider>
-  );
+    return (
+      <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
+        {children}
+      </NextThemesProvider>
+    );
+  } catch (error) {
+    console.error("ThemeProvider error:", error);
+    return <>{children}</>;
+  }
 }

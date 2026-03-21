@@ -44,9 +44,9 @@ export default function About({ home = false }) {
             <Image
               src="/images/profile.svg"
               alt="About Me"
-              layout="fill"
-              objectFit="contain"
-              className="z-10 "
+              width={250}
+              height={250}
+              className="z-10 object-contain"
             />
 
             <DotsSVG className="w-14 h-14 md:w-16 md:h-16 absolute bottom-[20%] right-0 z-10" />

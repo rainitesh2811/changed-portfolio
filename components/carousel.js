@@ -1,14 +1,15 @@
 "use client";
 
-import { PurpleText } from './texts';
-import { FaLinkedin } from 'react-icons/fa';
 import { ORIENTATION } from '@/utils/contants';
-import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useRef, useState } from 'react';
+import { PurpleText } from './texts';
 
-import Link from 'next/link';
 import Image from 'next/image';
-import DotsSVG from './assets/DotsSVG';
-import DesignSVG from './assets/DesignSVG';
+import Link from 'next/link';
+
+const DotsSVG = dynamic(() => import('./assets/DotsSVG'), { ssr: false });
+const DesignSVG = dynamic(() => import('./assets/DesignSVG'), { ssr: false });
 
 const Carousel = ({ testimonials, orientation = ORIENTATION.HORIZONTAL }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

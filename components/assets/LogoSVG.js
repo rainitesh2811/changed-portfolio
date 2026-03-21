@@ -1,19 +1,17 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const Logo = ({ size = 32 }) => {
+  const themeHook = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [color, setColor] = useState("#282c33");
 
   useEffect(() => {
     setMounted(true);
-    // Dynamically import and use useTheme only after mount
-    import("next-themes").then(({ useTheme }) => {
-      const { resolvedTheme } = useTheme();
-      setColor(resolvedTheme === "dark" ? "#ffffff" : "#282c33");
-    });
   }, []);
+
+  const color = mounted && themeHook?.resolvedTheme === "dark" ? "#ffffff" : "#282c33";
 
   return (
     <svg

@@ -1,15 +1,14 @@
-import { APPLINK_VARIANTS } from "@/utils/contants";
-import { PrimaryText, SecondaryText } from "./texts";
+import { PrimaryText } from "./texts";
 
 import Image from "next/image";
-import AppLink from "./app-link";
 import Link from "next/link";
 import { Fragment } from "react";
+import AppLink from "./app-link";
 
 export const CertificateCard = ({ certificate }) => {
   return (
     <div className="w-full h-fit border border-tertiary flex flex-col relative">
-      <div className="absolute -left-4 -top-4 bg-secondary shadow shadow-purple-500/50 h-16 w-16 rounded-full overflow-hidden border-2 border-purple hover:scale-110 transition-transform duration-300 ease-in-out">
+      <div className="absolute -left-4 -top-4 bg-secondary shadow shadow-purple-500/50 h-16 w-16 rounded-full overflow-hidden border-2 border-purple hover:scale-110 transition-transform duration-300 ease-in-out relative">
         <Link
           href={certificate.provider.url}
           target="_blank"
@@ -21,6 +20,7 @@ export const CertificateCard = ({ certificate }) => {
             alt={certificate.provider.name}
             fill
             className="object-cover"
+            sizes="64px"
           />
         </Link>
       </div>
@@ -40,7 +40,7 @@ export const CertificateCard = ({ certificate }) => {
 
       <div className="flex flex-col gap-4 p-4 grow">
         <Link
-          href={certificate.link}
+          href={certificate.link || certificate.provider.url}
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-purple-600 font-bold transition-transform duration-300 ease-in-out"

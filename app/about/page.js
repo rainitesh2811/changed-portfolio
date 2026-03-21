@@ -1,10 +1,10 @@
 import { Seperator } from "@/components/sections";
 
 import About from "@/components/sections/about";
-import Skills from "@/components/sections/skills";
-import FunFacts from "@/components/sections/fun-facts";
-import Testimonials from "@/components/sections/testimonials";
 import Certifications from "@/components/sections/certifications";
+import FunFacts from "@/components/sections/fun-facts";
+import Skills from "@/components/sections/skills";
+import Testimonials from "@/components/sections/testimonials";
 
 export const metadata = {
   title: "About Prachi Rawat | Software Engineer & Web Developer",

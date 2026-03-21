@@ -1,21 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-
 const AnimatedSignature = () => {
+  const themeHook = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [color, setColor] = useState("#6e11b0");
 
   useEffect(() => {
     setMounted(true);
-    // Dynamically import and use useTheme only after mount
-    import("next-themes").then(({ useTheme }) => {
-      const { resolvedTheme } = useTheme();
-      setColor(resolvedTheme === "dark" ? "#c778dd" : "#6e11b0");
-    });
   }, []);
+
+  const color = mounted && themeHook?.resolvedTheme === "dark" ? "#c778dd" : "#6e11b0";
 
   return (
     <motion.svg
